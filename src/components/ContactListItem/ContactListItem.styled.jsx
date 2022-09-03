@@ -12,7 +12,7 @@ border-bottom: 1px solid black;
 `;
 
 export const ContactWrapper = styled.span`
-width: 160px;
+width: 190px;
 `;
 
 export const DeleteButton = styled.button`

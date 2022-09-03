@@ -1,17 +1,18 @@
-import { useSelector, useDispatch } from "react-redux";
-import { deleteContact } from "redux/contacts-reducer";
+import { useSelector } from "react-redux";
+import { useDeleteContactMutation, useGetContactsQuery } from "redux/contactsApi";
 import { ContactListContainer } from "./ContactList.styled";
 import { ContactListItem } from "components/ContactListItem/ContactListItem";
 
 export const ContactList = () => {
-    const { items, filter } = useSelector(state => state.contacts);
-    const dispatch = useDispatch();
+    const filter = useSelector(state => state.filter.value);
+    const { data: contacts = [] } = useGetContactsQuery();
+    const [deleteContact] = useDeleteContactMutation();
 
     const normalizedFilter = filter.toLowerCase();
-    const filteredContacts = items.filter(item => item.name.toLowerCase().includes(normalizedFilter));
+    const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
 
     const handleContactDelete = (id) => {
-        dispatch(deleteContact(id));
+        deleteContact(id);
     }
 
     return (

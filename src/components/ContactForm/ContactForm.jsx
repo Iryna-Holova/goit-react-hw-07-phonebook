@@ -1,14 +1,12 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { addContact } from 'redux/contacts-reducer';
-import { nanoid } from "nanoid";
+import { useAddContactMutation, useGetContactsQuery } from 'redux/contactsApi';
 import { notify } from 'helpers/notification';
 import { ImUser, ImPhone } from "react-icons/im";
 import { Form, Input, Label, SubmitButton } from './ContactForm.styled';
 
 export const ContactForm = () => {
-  const { items } = useSelector(state => state.contacts);
-  const dispatch = useDispatch();
+  const { data: contacts } = useGetContactsQuery();
+  const [addContact] = useAddContactMutation();
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -34,13 +32,13 @@ export const ContactForm = () => {
     event.preventDefault();
 
     const normalisedName = name.toLowerCase();
-    const isInContacts = items.find(item => item.name.toLowerCase() === normalisedName);
+    const isInContacts = contacts.find(item => item.name.toLowerCase() === normalisedName);
 
     if (isInContacts) {
       notify(`${name} is already in contacts`);
     } else {
-      const contact = { name, number, id: nanoid() };
-      dispatch(addContact(contact));
+      const contact = { name, number };
+      addContact(contact);
     };
     reset();
   }
