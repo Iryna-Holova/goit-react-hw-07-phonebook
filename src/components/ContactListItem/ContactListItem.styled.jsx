@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ContactItem = styled.li`
+height: 30px;
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -16,8 +17,6 @@ width: 190px;
 `;
 
 export const DeleteButton = styled.button`
-width: 30px;
-height: 30px;
 transition: color 300ms ease-in-out;
 
 :hover, :focus {
