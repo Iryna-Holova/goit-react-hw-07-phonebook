@@ -4,7 +4,8 @@ import { useDeleteContactMutation } from "redux/contactsApi";
 import { ContactItem, ContactWrapper, DeleteButton } from "./ContactListItem.styled";
 import { Loader } from "components/Loader/Loader";
 
-export const ContactListItem = ({ id, name, number }) => {
+export const ContactListItem = ({ contact }) => {
+    const { id, name, number } = contact;
     const [deleteContact, {isLoading}] = useDeleteContactMutation();
 
     return (
@@ -23,7 +24,9 @@ export const ContactListItem = ({ id, name, number }) => {
 };
 
 ContactListItem.propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
+    contact: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired,
+    })
 };

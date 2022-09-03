@@ -71,7 +71,7 @@ export const ContactForm = () => {
         /></Label>
         <SubmitButton
           type='submit'
-          disabled={isLoading && true}
+          disabled={isLoading}
         >
           {!isLoading
             ? 'Add contact'

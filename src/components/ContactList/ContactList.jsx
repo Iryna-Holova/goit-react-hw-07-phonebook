@@ -14,12 +14,10 @@ export const ContactList = () => {
     return (
         <ContactListContainer>
             {isLoading && <Loader message='Loading...'/>}
-            {filteredContacts && filteredContacts.map(({ id, name, number }) => 
+            {filteredContacts && filteredContacts.map(contact => 
                 <ContactListItem
-                    key={id}
-                    id={id}
-                    name={name}
-                    number={number}
+                    key={contact.id}
+                    contact={contact}
                 />
             )}
         </ContactListContainer>
