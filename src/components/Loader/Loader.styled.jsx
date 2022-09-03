@@ -7,6 +7,8 @@ export const LoaderWrapper = styled.div `
 `
 
 export const Spinner = styled.span`
+width: 16px;
+height: 16px;
 & svg {
     animation: icon-spin 2s infinite linear;
 }

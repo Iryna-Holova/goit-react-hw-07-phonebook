@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useGetContactsQuery } from "redux/contactsApi";
 import { ContactListContainer } from "./ContactList.styled";
 import { ContactListItem } from "components/ContactListItem/ContactListItem";
-import {Loader} from "components/Loader/Loader";
+import { Loader } from "components/Loader/Loader";
 
 export const ContactList = () => {
     const filter = useSelector(state => state.filter.value);
@@ -14,7 +14,7 @@ export const ContactList = () => {
     return (
         <ContactListContainer>
             {isLoading && <Loader message='Loading...'/>}
-            {filteredContacts.map(({ id, name, number }) => 
+            {filteredContacts && filteredContacts.map(({ id, name, number }) => 
                 <ContactListItem
                     key={id}
                     id={id}

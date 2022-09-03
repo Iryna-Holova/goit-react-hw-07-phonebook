@@ -36,15 +36,19 @@ font-size: inherit;
 
 export const SubmitButton = styled.button`
 width: 100%;
+height: 35px;
 padding: 5px;
-background-color: #ffffff7f;
+background-color: #ffffffc1;
 border-radius: 5px;
 text-align: center;
-text-transform: capitalize;
 font-weight: bold;
 transition: background-color 300ms ease-in-out;
 
 :hover, :focus {
     background-color: #ffffff;
+}
+
+:disabled {
+    opacity: 0.6;
 }
 `;

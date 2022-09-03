@@ -3,10 +3,11 @@ import { useAddContactMutation, useGetContactsQuery } from 'redux/contactsApi';
 import { notify } from 'helpers/notification';
 import { ImUser, ImPhone } from "react-icons/im";
 import { Form, Input, Label, SubmitButton } from './ContactForm.styled';
+import { Loader } from 'components/Loader/Loader';
 
 export const ContactForm = () => {
   const { data: contacts } = useGetContactsQuery();
-  const [addContact] = useAddContactMutation();
+  const [addContact, {isLoading}] = useAddContactMutation();
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -68,7 +69,15 @@ export const ContactForm = () => {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         /></Label>
-        <SubmitButton type='submit'>Add contact</SubmitButton>
+        <SubmitButton
+          type='submit'
+          disabled={isLoading && true}
+        >
+          {!isLoading
+            ? 'Add contact'
+            : <Loader message='Please wait...'/>
+          }
+        </SubmitButton>
       </Form>
     )
 };
